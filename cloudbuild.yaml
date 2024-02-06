@@ -1,5 +1,5 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/sofia-villalobos:f223f3b:$SHORT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/sofia-villalobos:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-args: ['push', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/sofia-villalobos:f223f3b:$SHORT_SHA']
+  args: ['push', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/sofia-villalobos:$SHORT_SHA']
