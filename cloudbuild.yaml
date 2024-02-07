@@ -8,11 +8,11 @@ steps:
 
 # Paso 1: Construir la función WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'waterDrinkingReminderFunction', '--gen2', '--region=us-central1', '--source=ExtraFunctions/WaterDrinkingReminder', '--runtime=nodejs14']
+    args: ['functions', 'deploy', 'waterDrinkingReminderFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/WaterDrinkingReminder', '--runtime', 'nodejs14']
 
 # Paso 2: Construir la función GreetingsAndMoment
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['functions', 'deploy', 'greetingsAndMomentFunction', '--gen2', '--region', 'us-central1', '--source', 'ExtraFunctions/GreetingsAndMoment', '--runtime', 'nodejs14']
+  args: ['functions', 'deploy', 'greetingsAndMomentFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/GreetingsAndMoment', '--runtime', 'nodejs14']
 
 # Paso 3: Construir la imagen de Cloud Run para WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/docker'
