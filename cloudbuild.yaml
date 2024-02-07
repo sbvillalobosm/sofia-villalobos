@@ -16,24 +16,24 @@ steps:
 
 # Paso 3: Construir la imagen de Cloud Run para WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/your-project-id/water-drinking-reminder', 'ExtraFunctions/WaterDrinkingReminder']
+  args: ['build', '-t', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA', 'ExtraFunctions/WaterDrinkingReminder']
 
 # Paso 4: Push de la imagen de Cloud Run para WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/your-project-id/water-drinking-reminder']
+  args: ['push', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA']
 
 # Paso 5: Construir la imagen de Cloud Run para GreetingsAndMoment
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/your-project-id/greetings-and-moment', 'ExtraFunctions/GreetingsAndMoment']
+  args: ['build', '-t', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA', 'ExtraFunctions/GreetingsAndMoment']
 
 # Paso 6: Push de la imagen de Cloud Run para GreetingsAndMoment
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/your-project-id/greetings-and-moment']
+  args: ['push', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA']
 
 # Paso 7: Desplegar la imagen de Cloud Run para WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'water-drinking-reminder', '--image', 'gcr.io/your-project-id/water-drinking-reminder', '--region', 'us-central1', '--platform', 'managed']
+  args: ['run', 'deploy', 'water-drinking-reminder', '--image', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed']
 
 # Paso 8: Desplegar la imagen de Cloud Run para GreetingsAndMoment
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'greetings-and-moment', '--image', 'gcr.io/your-project-id/greetings-and-moment', '--region', 'us-central1', '--platform', 'managed']
+  args: ['run', 'deploy', 'greetings-and-moment', '--image', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed']
