@@ -5,35 +5,19 @@ steps:
   args: ['push', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/sofia-villalobos:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 'deploy', 'sofia-villalobos', '--image=gcr.io/test-bench-sofia-villalobos/sbvillalobosm/sofia-villalobos:$SHORT_SHA', '--region=us-central1']
-
-# Paso 1: Construir la función WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/gcloud'
     args: ['functions', 'deploy', 'waterDrinkingReminderFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/WaterDrinkingReminder', '--runtime', 'nodejs14']
-
-# Paso 2: Construir la función GreetingsAndMoment
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['functions', 'deploy', 'greetingsAndMomentFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/GreetingsAndMoment', '--runtime', 'nodejs14']
-
-# Paso 3: Construir la imagen de Cloud Run para WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA', 'ExtraFunctions/WaterDrinkingReminder']
-
-# Paso 4: Push de la imagen de Cloud Run para WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA']
-
-# Paso 5: Construir la imagen de Cloud Run para GreetingsAndMoment
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA', 'ExtraFunctions/GreetingsAndMoment']
-
-# Paso 6: Push de la imagen de Cloud Run para GreetingsAndMoment
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA']
-
-# Paso 7: Desplegar la imagen de Cloud Run para WaterDrinkingReminder
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 'deploy', 'water-drinking-reminder', '--image', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed']
-
-# Paso 8: Desplegar la imagen de Cloud Run para GreetingsAndMoment
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 'deploy', 'greetings-and-moment', '--image', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed']
