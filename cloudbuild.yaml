@@ -6,9 +6,9 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 'deploy', 'sofia-villalobos', '--image=gcr.io/test-bench-sofia-villalobos/sbvillalobosm/sofia-villalobos:$SHORT_SHA', '--region=us-central1']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['functions', 'deploy', 'waterDrinkingReminderFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/WaterDrinkingReminder', '--runtime', 'nodejs14']
+  args: ['functions', 'deploy', 'waterDrinkingReminderFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/WaterDrinkingReminder', '--runtime', 'nodejs14', '--trigger-http'] 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['functions', 'deploy', 'greetingsAndMomentFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/GreetingsAndMoment', '--runtime', 'nodejs14']
+  args: ['functions', 'deploy', 'greetingsAndMomentFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/GreetingsAndMoment', '--runtime', 'nodejs14', '--trigger-http']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA', 'ExtraFunctions/WaterDrinkingReminder']
 - name: 'gcr.io/cloud-builders/docker'
