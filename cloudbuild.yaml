@@ -6,9 +6,9 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 'deploy', 'sofia-villalobos', '--image=gcr.io/test-bench-sofia-villalobos/sbvillalobosm/sofia-villalobos:$SHORT_SHA', '--region=us-central1']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['functions', 'deploy', 'waterDrinkingReminderFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/WaterDrinkingReminder', '--runtime', 'nodejs16', '--trigger-http'] 
+  args: ['functions', 'deploy', 'waterDrinkingReminderFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/WaterDrinkingReminder', '--runtime', 'nodejs20', '--trigger-http'] 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['functions', 'deploy', 'greetingsAndMomentFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/GreetingsAndMoment', '--runtime', 'nodejs16', '--trigger-http']
+  args: ['functions', 'deploy', 'greetingsAndMomentFunction', '--region', 'us-central1', '--source', 'ExtraFunctions/GreetingsAndMoment', '--runtime', 'nodejs20', '--trigger-http']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA', 'ExtraFunctions/WaterDrinkingReminder']
 - name: 'gcr.io/cloud-builders/docker'
@@ -18,6 +18,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'water-drinking-reminder', '--image', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed']
+  args: ['run', 'deploy', 'water-drinking-reminder', '--image', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/water-drinking-reminder:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'greetings-and-moment', '--image', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed']
+  args: ['run', 'deploy', 'greetings-and-moment', '--image', 'gcr.io/test-bench-sofia-villalobos/sbvillalobosm/greetings-and-moment:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
